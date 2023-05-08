@@ -1,27 +1,45 @@
 import java.util.Scanner;
+class Complex {
+    private double real;
+    private double imag;
+
+    public void setData(double r, double i) {
+        real = r;
+        imag = i;
+    }
+
+    public void display() {
+        System.out.println(real + " + " + imag + "i");
+    }
+
+    public Complex add(Complex c1, Complex c2) {
+        Complex result = new Complex();
+        result.real = c1.real + c2.real;
+        result.imag = c1.imag + c2.imag;
+        return result;
+    }
+}
+
 public class Q2{
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Scanner x = new Scanner(System.in);
-        System.out.print("Enter the weight(kg): ");
-        double w = x.nextDouble();
-        System.out.print("Enter the height(m): ");
-        double h = x.nextDouble();
+        Complex c1 = new Complex();
+        Complex c2 = new Complex();
 
-        String b = null;
-        double bmi = w / (h * h);
+        int a = x.nextInt(), b = x.nextInt();
+        int c = x.nextInt(), d = x.nextInt();
 
-        if(bmi < 18.5) {
-            b = "Underweight";
-        }
-        else if(bmi >= 18.5 && bmi < 25){
-            b = "Normal Weight";
-        }
-        else if(bmi >= 25 && bmi < 30){
-            b = "Overweight";
-        }
-        else if(bmi >= 30){
-            b = "Obese";
-        }
-        System.out.println("The person is " + b);
+        c1.setData(a, b);
+        c2.setData(c, d);
+
+        Complex sum = new Complex();
+        sum = sum.add(c1, c2);
+
+        System.out.print("Sum of ");
+        c1.display();
+        System.out.print("and ");
+        c2.display();
+        System.out.print("is ");
+        sum.display();
     }
 }

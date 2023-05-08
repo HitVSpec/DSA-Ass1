@@ -1,22 +1,48 @@
 import java.util.Scanner;
-public class Q3{
-    public static void main(String[] args){
-        Scanner x = new Scanner(System.in);
-        System.out.print("Enter the number: ");
-        int a = x.nextInt();
-        int temp = a, d = 0, sum = 0, pro = 1;
 
-        while(temp > 0){
-            d = temp % 10;
-            sum += d;
-            pro *= d;
-            temp /= 10;
+class Student {
+    private int Roll;
+    private String Name;
+    private double DSA_Mark;
+
+    public void getdata() {
+        Scanner x = new Scanner(System.in);
+        System.out.print("Enter Roll No.: ");
+        Roll = x.nextInt();
+        System.out.print("Enter Name: ");
+        Name = x.next();
+        System.out.print("Enter DSA Mark: ");
+        DSA_Mark = x.nextDouble();
+    }
+
+    public void showdata() {
+        System.out.println("Roll No.: " + Roll);
+        System.out.println("Name: " + Name);
+        System.out.println("DSA Mark: " + DSA_Mark);
+    }
+
+    public double getDSA_Mark() {
+        return DSA_Mark;
+    }
+}
+
+public class Q3 {
+    public static void main(String[] args) {
+        Student[] std = new Student[5];
+
+        for (int i = 0; i < std.length; i++) {
+            System.out.println("Enter details for student " + (i+1) + ":");
+            std[i] = new Student();
+            std[i].getdata();
         }
-        if(sum == pro){
-            System.out.println(a + " is a spy number");
+        Student highestDSAStudent = std[0];
+        for (int i = 1; i < std.length; i++) {
+            if (std[i].getDSA_Mark() > highestDSAStudent.getDSA_Mark()) {
+                highestDSAStudent = std[i];
+            }
         }
-        else{
-            System.out.println(a + " is not a spy number");
-        }
+
+        System.out.println("Student with the highest DSA Mark:");
+        highestDSAStudent.showdata();
     }
 }

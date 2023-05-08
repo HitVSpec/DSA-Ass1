@@ -1,42 +1,79 @@
-import java.util.Random;
+import java.util.Scanner;
+class restaurentMeal{
+    String name;
+    double price;
 
-public class AQ5 {
-    public static void main(String[] args){
-        int [][] arr = new int[4][4];
-        Random rand = new Random();
+    public restaurentMeal(String name, double price){
+        this.name = name;
+        this.price = price;
+    }
+    public String getName(){
+        return name;
+    }
+    public Double getPrice(){
+        return price;
+    }
+    public void Display(){
+        System.out.println("Meal Name: " + name);
+        System.out.println("Meal Price: " + price);
+    }
+}
+class HotelService{
+	protected String name;
+	protected double fee;
+	protected int roomNo;
 
-        for(int i = 0; i < 4; i++){
-            for(int j = 0; j < 4; j++){
-                arr[i][j] = rand.nextInt(2);
-            }
-        }
+    public HotelService(String name, double fee, int roomNo){
+        this.name = name;
+        this.fee = fee;
+        this.roomNo = roomNo;
+    }
+    public String getName(String name){
+        return name;
+    }
+    public double getFee(Double fee){
+        return fee;
+    }
+    public int getRoomNo(int roomNo){
+        return roomNo;
+    }
+    public void Display(){
+        System.out.println("Service Name: " + name);
+        System.out.println("Service Fee: " + fee);
+        System.out.println("Room Number: " + roomNo);
+    }
+}
+class RoomServiceMeal extends HotelService{
+    private double total;
 
-        System.out.println("Matrix is:");
-        for(int i = 0; i < 4; i++){
-            for(int j = 0; j < 4; j++){
-                System.out.print(arr[i][j] + " ");
-            }
-            System.out.println();
-        }
-        int maxRow = 0, maxCol = 0, maxCount = 0;
+    public RoomServiceMeal(String name, double price, int roomNo) {
+        super(name, price, roomNo);
+        this.name = "room service";
+        this.fee = 24.0;
+        this.roomNo = roomNo;
+        this.total = price + fee;
+    }
 
-        for (int i = 0; i < 4; i++) {
-            int rowCount = 0, colCount = 0;
-            for (int j = 0; j < 4; j++) {
-                rowCount += arr[i][j];
-                colCount += arr[j][i];
-            }
-            if (rowCount > maxCount) {
-                maxRow = i;
-                maxCount = rowCount;
-            }
-            if (colCount > maxCount) {
-                maxCol = i;
-                maxCount = colCount;
-            }
-        }
+    public void Display() {
+        super.Display();
+        System.out.println("Service Name: " + getName(name));
+        System.out.println("Service Fee: " + getFee(fee));
+        System.out.println("Room Number: " + getRoomNo(roomNo));
+        System.out.println("Total: " + total);
+    }
+}
+public class AQ5{
+    public static void main(String[] args) {
+        Scanner x = new Scanner(System.in);
 
-        System.out.println("Row with the most 1s: " + maxRow);
-        System.out.println("Column with the most 1s: " + maxCol);
+        System.out.print("Enter meal name: ");
+        String mealName = x.nextLine();
+        System.out.print("Enter meal price: ");
+        double mealPrice = x.nextDouble();
+        x.nextLine();
+        System.out.print("Enter room number: ");
+        int roomNumber = x.nextInt();
+        RoomServiceMeal meal = new RoomServiceMeal(mealName, mealPrice, roomNumber);
+        meal.Display();
     }
 }

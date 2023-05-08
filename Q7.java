@@ -1,41 +1,45 @@
 import java.util.Scanner;
-public class Q7 {
-    public static void main(String[] args){
-        Scanner x = new Scanner(System.in);
-        System.out.print("Enter the length of array: ");
-        int len = x.nextInt();
-        int arr[] = new int[len];
+class Person {
+    String name;
+    int age;
 
-        for(int i = 0; i < len; i++){
-            System.out.println("Enter the elements of array");
-            arr[i] = x.nextInt();
-        }
-        int max = arr[0], min = arr[0];
-        int maxFreq = 1, minFreq = 1;
-        int maxPos = 0, minPos = 0;
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+class Employee extends Person {
+    int Eid;
+    double salary;
+    public Employee(String name, int age, int Eid, double salary){
+        super(name, age);
+        this.Eid = Eid;
+        this.salary = salary;
+    }
+    
+    public void empDisplay(){
+        System.out.println("Employee Details: ");
+        System.out.println("Employee Name: " + name);
+        System.out.println("Employee Age: " + age);
+        System.out.println("Employee Id: " + Eid);
+        System.out.println("Employee Salary: " + salary);
+    }
+    public class Main{
+        public static void main(String[] args){
+            Scanner x = new Scanner(System.in);
 
-        for (int i = 1; i < len; i++){
-            if (arr[i] > max){
-                max = arr[i];
-                maxFreq = 1;
-                maxPos = i;
-            }
-            else if(arr[i] == max){
-                maxFreq++;
-            }
-            if (arr[i] < min){
-                min = arr[i];
-                minFreq = 1;
-                minPos = i;
-            }
-            else if (arr[i] == min){
-                minFreq++;
-                minPos = i;
-            }
+            System.out.print("Enter employee name: ");
+            String name = x.nextLine();
+            System.out.print("Enter the employee age: ");
+            int age = x.nextInt();
+            System.out.print("Enter the employee id: ");
+            int Eid = x.nextInt();
+            System.out.print("Enter the employee salary: ");
+            double salary = x.nextDouble();
+
+            Employee emp = new Employee(name, age, Eid, salary);
+            emp.empDisplay();
+
         }
-        System.out.println("Maximum element of Array is " + max + " and occurs " + maxFreq + " times.");
-        System.out.println("Minimum element of Array is " + min + " and occurs " + minFreq + " times.");
-        System.out.println("First occurrence of maximum element is at position " + (maxPos + 1) + ".");
-        System.out.println("Last occurrence of minimum element is at position " + (minPos + 1) + ".");
     }
 }
