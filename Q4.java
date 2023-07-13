@@ -1,47 +1,22 @@
-import java.util.Scanner;
-
-class Product {
-    private int pid;
-    private double price;
-    private static double tot_price;
-
-    public Product(int pid, double price) {
-        this.pid = pid;
-        this.price = price;
-        tot_price += price;
-    }
-
-    public void display() {
-        System.out.println("Product ID: " + this.pid);
-        System.out.println("Price: " + this.price);
-    }
-
-    public static double getTotalPrice() {
-        return tot_price;
-    }
-}
-
 public class Q4 {
-    public static void main(String[] args) {
-        Scanner x = new Scanner(System.in);
-        Product[] products = new Product[5];
-        double totalPrice = 0.0;
-
-        for (int i = 0; i < 5; i++) {
-            System.out.println("Enter details for product " + (i+1));
-            System.out.print("Enter Product ID: ");
-            int pid = x.nextInt();
-            System.out.print("Enter Price: $");
-            double price = x.nextDouble();
-            products[i] = new Product(pid, price);
-            totalPrice += price;
+    public static <E> void printArray(E[] array){
+        for(E element : array){
+            System.out.println(element);
         }
+    }
+    public static void main(String [] args){
+        Integer[] intA = {1,2,3,4,5};
+        String[] strA = {"hello", "world"};
+        Double[] doubA = {1.5,1.6,1.8,1.90};
+        Character[] charA = {'a', 'b','c'};
 
-        System.out.println("\nDetails of purchased products:");
-        for (int i = 0; i < 5; i++) {
-            products[i].display();
-        }
-
-        System.out.println("\nTotal price of purchased products: " + Product.getTotalPrice());
+        System.out.println();
+        printArray(intA);
+        System.out.println();
+        printArray(strA);
+        System.out.println();
+        printArray(doubA);
+        System.out.println();
+        printArray(charA);
     }
 }

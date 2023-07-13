@@ -1,41 +1,20 @@
-class Distance{
-    private int meters;
-    private int centimeters;
-
-    public Distance(int meters, int centimeters){
-        this.meters = meters;
-        this.centimeters = centimeters;
-    }
-    public void Display(){
-        System.out.println("Distance: " + meters + " meters," + centimeters + " centimeters");
-    }
-    public Distance sum(Distance d){
-        int totalCM = this.centimeters + d.centimeters;
-        int carry = 0;
-
-        if (totalCM >= 100) {
-            totalCM -= 100;
-            carry = 1;
+public class AQ3 {
+    public static boolean isPalindrome(String s){
+        if(s.length() <= 1){
+            return true;
         }
-
-        int totalMeters = this.meters + d.meters + carry;
-
-        return new Distance(totalMeters, totalCM);
+        if(s.charAt(0) == s.charAt(s.length() - 1)){
+            String subString = s.substring(1, s.length() - 1);
+            return isPalindrome(subString);
+        }
+        else{
+            return false;
+        }
     }
-}
-public class AQ3{
     public static void main(String[] args){
-        Distance d1 = new Distance(5, 60);
-        Distance d2 = new Distance(3, 40);
-
-        System.out.print("Distance 1: ");
-        d1.Display();
-        System.out.print("Distance 2: ");
-        d2.Display();
-
-        Distance d3 = d1.sum(d2);
-
-        System.out.print("Sum of distances: ");
-        d3.Display();
+        String s1 = "racecar";
+        System.out.println(s1 + " is a palindrome: " + isPalindrome(s1));
+        String s2 = "gohangasalamiimalasagnahog";
+        System.out.println(s2 + " is a palindrome: " + isPalindrome(s2));
     }
 }

@@ -1,39 +1,28 @@
-import java.util.Scanner;
-class Commission{
-    private double sales;
+public class AQ1 {
+    private int account_no;
+    private String name;
+    private Double balance;
 
-    public Commission(double sales){
-        this.sales = sales;
+    public AQ1(int account_no, String name, Double balance)
+        throws InvalidBalanceException{
+            this.account_no = account_no;
+            this.name = name;
+            if(balance <= 0){
+                throw new InvalidBalanceException("Balance cannot be less than 0");
+            }
+            this.balance = balance;
     }
-    public double getCommission(){
-        if(sales < 0){
-            return 0;
+    public static void main(String[] args){
+        try{
+            AQ1 bk = new AQ1(1234, "Rahul", -900.0);
         }
-        else if (sales < 100){
-            return sales * 0.02;
-        }
-        else if (sales <= 5000){
-            return sales * 0.05;
-        }
-        else{
-            return sales * 0.08;
+        catch(InvalidBalanceException e){
+            System.out.println(e.getMessage());
         }
     }
 }
-public class AQ1{
-    public static void main(String[] args){
-        Scanner x = new Scanner(System.in);
-
-        System.out.print("Enter the sales Amount: ");
-        double sales = x.nextDouble();
-
-        if(sales < 0){
-            System.out.println("Invalid Input");
-        }
-        else {
-            Commission com = new Commission(sales);
-            double comAmt = com.getCommission();
-            System.out.println("Commission Amount: " + comAmt);
-        }
+class InvalidBalanceException extends Exception{
+    public InvalidBalanceException(String message){
+        super(message);
     }
 }

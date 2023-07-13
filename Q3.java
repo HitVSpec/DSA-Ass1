@@ -1,48 +1,38 @@
-import java.util.Scanner;
-
-class Student {
-    private int Roll;
-    private String Name;
-    private double DSA_Mark;
-
-    public void getdata() {
-        Scanner x = new Scanner(System.in);
-        System.out.print("Enter Roll No.: ");
-        Roll = x.nextInt();
-        System.out.print("Enter Name: ");
-        Name = x.next();
-        System.out.print("Enter DSA Mark: ");
-        DSA_Mark = x.nextDouble();
-    }
-
-    public void showdata() {
-        System.out.println("Roll No.: " + Roll);
-        System.out.println("Name: " + Name);
-        System.out.println("DSA Mark: " + DSA_Mark);
-    }
-
-    public double getDSA_Mark() {
-        return DSA_Mark;
+class MarksOutOfBoundsException extends Exception{
+    public MarksOutOfBoundsException(String text){
+        super(text);
     }
 }
+class Student{
+    private String name;
+    private int marks;
 
+    public Student(String name, int marks)throws MarksOutOfBoundsException{
+        this.name = name;
+        if(marks > 100){
+            throw new MarksOutOfBoundsException("Marks should be lesss than 100");
+
+        }
+        this.marks = marks;
+    }
+    public String getName(){
+        return name;
+    }
+    public int getMarks(){
+        return marks;
+    }
+}
 public class Q3 {
-    public static void main(String[] args) {
-        Student[] std = new Student[5];
-
-        for (int i = 0; i < std.length; i++) {
-            System.out.println("Enter details for student " + (i+1) + ":");
-            std[i] = new Student();
-            std[i].getdata();
+    public static void main(String[] args){
+        try{
+            Student s1 = new Student("A", 69);
+            Student s2 = new Student("B", 110);
+            Student s3 = new Student ("C", 23);
+            Student s4 = new Student("D", 212);
+            Student s5 = new Student("E", 99);
         }
-        Student highestDSAStudent = std[0];
-        for (int i = 1; i < std.length; i++) {
-            if (std[i].getDSA_Mark() > highestDSAStudent.getDSA_Mark()) {
-                highestDSAStudent = std[i];
-            }
+        catch(MarksOutOfBoundsException e){
+            System.out.println(e.getMessage());
         }
-
-        System.out.println("Student with the highest DSA Mark:");
-        highestDSAStudent.showdata();
     }
 }

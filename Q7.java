@@ -1,45 +1,97 @@
-import java.util.Scanner;
-class Person {
-    String name;
-    int age;
+import java.util.*;
+public class Q7 {
+    public static void main(String[] args){
+        Scanner x = new Scanner(System.in);
+        int choice;
 
-    public Person(String name, int age) {
-        this.name = name;
-        this.age = age;
+        do{
+            System.out.println("Menu");
+            System.out.println("");
+            System.out.println("");
+            System.out.println("");
+            System.out.println("");
+            System.out.println("");
+            choice = x.nextInt();
+
+            switch (1){
+                case 1:
+                    System.out.print("Enter a number: ");
+                    int fno = x.nextInt();
+                    System.out.println("Factorial Number: " + factorial(fno));
+                    break;
+                case 2:
+                    System.out.print("Enter the base: ");
+                    int b = x.nextInt();
+                    System.out.print("Enter teh power: ");
+                    int p = x.nextInt();
+                    System.out.println("Result" + power(b,p));
+                    break;
+                case 3:
+                    System.out.println("Enter the two numbers: ");
+                    int num1 = x.nextInt(), num2 = x.nextInt();
+                    System.out.println("GCD of Two Numbers is: " + gcd(num1, num2));
+                    break;
+                case 4:
+                    System.out.print("Enter Decimal Number: ");
+                    int dec = x.nextInt();
+                    System.out.println("Binary Number is: " + DtoB(dec));
+                    break;
+                case 5:
+                    System.out.println("Enter the two Numbers: ");
+                    int p1 = x.nextInt(), p2 = x.nextInt();
+                    System.out.println("Product of two numbers is: " + product(p1 , p2));
+                    break;
+                case 0:
+                    System.out.println("Exiting");
+                    break;
+                default:
+                    System.out.println("Invalid Choice");
+                    break;
+            }
+        }
+        while(choice != 0);
     }
-}
-class Employee extends Person {
-    int Eid;
-    double salary;
-    public Employee(String name, int age, int Eid, double salary){
-        super(name, age);
-        this.Eid = Eid;
-        this.salary = salary;
+
+    public static long factorial(int n){
+        if(n == 0 || n == 1){
+            return 1;
+        }
+        else{
+            return n * factorial(n - 1);
+        }
     }
-    
-    public void empDisplay(){
-        System.out.println("Employee Details: ");
-        System.out.println("Employee Name: " + name);
-        System.out.println("Employee Age: " + age);
-        System.out.println("Employee Id: " + Eid);
-        System.out.println("Employee Salary: " + salary);
+    public static long power(int x, int n){
+        if(n == 0){
+            return 1;
+        }
+        else{
+            return x * power(x, n-1);
+        }
     }
-    public class Main{
-        public static void main(String[] args){
-            Scanner x = new Scanner(System.in);
-
-            System.out.print("Enter employee name: ");
-            String name = x.nextLine();
-            System.out.print("Enter the employee age: ");
-            int age = x.nextInt();
-            System.out.print("Enter the employee id: ");
-            int Eid = x.nextInt();
-            System.out.print("Enter the employee salary: ");
-            double salary = x.nextDouble();
-
-            Employee emp = new Employee(name, age, Eid, salary);
-            emp.empDisplay();
-
+    public static int gcd(int a, int b){
+        if(b == 0){
+            return a;
+        }
+        else{
+            return gcd(b, a%b);
+        }
+    }
+    public static String DtoB(int n){
+        if(n == 0){
+            return "0";}
+        else if(n == 1){
+            return "1";
+        }
+        else{
+            return DtoB(n / 2) + Integer.toString(n % 2);
+        }
+    }
+    public static long product(int a, int b){
+        if(b == 0){
+            return 0;
+        }
+        else{
+            return a + product(a, b-1);
         }
     }
 }
